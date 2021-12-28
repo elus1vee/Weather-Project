@@ -3,7 +3,14 @@ function getUrlByCity(city, date = "") {
   if (date) {
     url = url + city + "&dt=" + date;
   } else {
-    url = url + city;
+    url = url + city + "&days=7&aqi=yes&alerts=yes";
   }
   return url;
+}
+function dayWeatherPreview() {
+  for (let i = 0; i < 7; i++) {
+    let div = document.createElement("div");
+    let datee = data.forecast.forecastday[i].date;
+    let icon = data.forecast.forecastday[i].day.condition.icon;
+  }
 }
