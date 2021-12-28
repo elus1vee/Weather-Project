@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="RU">
-  <head>
-    <title>Weather Project</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <meta charset="UTF-8" />
-    <!-- Адаптивность страницы -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    />
-    <!-- Запрет индексации страницы полностью -->
-    <meta name="robots" content="none" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- Подключение JS -->
-    <script src="js/main.js" defer></script>
+    <header>
+        <div class="header">
+            <p><img src="./main_logo.png" alt="weather logo" id="mainLogo"></p>
+            <form action="" name="loginForm">
+                <input type='search' name='city' placeholder="Введите ваш город">
+            </form>
+            <p class="time_block">time block</p>
+        </div>
+    </header>
 
-    <!-- Редирект (перезагрузка) страницы -->
-    <!-- Задержка в секундах; url = Адрес сайта/страницы-->
-    <!-- <meta http-equiv="refresh" content="3; url=https://google.com"> -->
-  </head>
-
-  <body>
-    <div class="content">Co</div>
-  </body>
+    <div class="main">
+        <div class="first_line">
+            <p class="first_line_p">погода на семь дней</p>
+            <p class="first_line_p">история погоды за семь дней</p>
+            <p class="first_line_p">астрономические данные на сегодняшний день</p>
+        </div>
+        <div class="second_line">
+            <p class="second_line_p">день первый</p>
+            <p class="second_line_p">день второй</p>
+            <p class="second_line_p">день третий</p>
+            <p class="second_line_p">день четвертый</p>
+            <p class="second_line_p">день пятый</p>
+            <p class="second_line_p">день шестой</p>
+            <p class="second_line_p">день седьмой</p>
+        </div>
+    </div>
+    
+</body>
 </html>
