@@ -1,75 +1,73 @@
+@import url(nullstyle.css);
+
+/* ///////////////////////////// */
 .header {
-    
-    border: 1px solid grey;
-    border-radius: 3px;
-    background-color: rgb(93, 166, 184); 
-    padding: 30px;
-    margin: 20px; 
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: rgb(93, 166, 184);
+  padding: 30px;
+  margin: 20px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    position: relative;
-    min-width: 500px;
- 
+  position: relative;
+  min-width: 500px;
 }
 input {
-    border-radius: 7px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  border-radius: 7px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 
+  margin: 0 3px 0 30px;
 
-    margin: 0 3px 0 30px;
-    
-    min-width: 252px;
-    max-width: 470px;
-    width: 100%;
-
+  min-width: 252px;
+  max-width: 470px;
+  width: 100%;
 }
 #mainLogo {
-    width: 100px;
-    height: 5%;
-    margin-left: auto;  
+  width: 100px;
+  height: 5%;
+  margin-left: auto;
 }
 .time_block {
-    margin-left: auto;
+  margin-left: auto;
 }
-.main{
-    border: 1px solid grey;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 3px;
-    
+.main {
+  border: 1px solid grey;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
 }
-.first_line{
-    border: 1px solid grey;
-    background-color: burlywood;
-    border-radius: 3px;
-    display: flex;
-    margin: 20px;
+.first_line {
+  border: 1px solid grey;
+  background-color: burlywood;
+  border-radius: 3px;
+  display: flex;
+  margin: 20px;
 }
-.second_line{
-    border: 1px solid grey;
-    background-color: bisque;
-    border-radius: 3px;
-    display: flex;
-    margin: 20px;
+.second_line {
+  border: 1px solid grey;
+  background-color: bisque;
+  border-radius: 3px;
+  display: flex;
+  margin: 20px;
 }
 .first_line_p {
-    border: 1px solid grey;
-    background-color: burlywood;
-    border-radius: 3px;
-    display: flex;
-    padding: 20px;
-    margin: 10px;  
+  border: 1px solid grey;
+  background-color: burlywood;
+  border-radius: 3px;
+  display: flex;
+  padding: 20px;
+  margin: 10px;
 }
 .second_line_p {
-    border: 1px solid grey;
-    background-color: bisque;
-    border-radius: 3px;
-    display: flex;
-    padding: 20px;
-    margin: 10px;
+  border: 1px solid grey;
+  background-color: bisque;
+  border-radius: 3px;
+  display: flex;
+  padding: 20px;
+  margin: 10px;
 }
