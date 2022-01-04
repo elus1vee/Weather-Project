@@ -57,33 +57,26 @@ input {
   margin-right: auto;
   border-radius: 3px;
 }
-.first_line {
-  border: 1px solid grey;
-  background-color: burlywood;
+.first_line,
+.second_line,
+.first_line p,
+.second_line p {
   border-radius: 3px;
   display: flex;
   margin: 20px;
 }
+
+.first_line,
 .second_line {
   border: 1px solid grey;
-  background-color: bisque;
-  border-radius: 3px;
-  display: flex;
-  margin: 20px;
+  background-color: #8a716a;
 }
-.first_line_p {
+
+.first_line p,
+.second_line p {
   border: 1px solid grey;
-  background-color: burlywood;
-  border-radius: 3px;
-  display: flex;
-  padding: 20px;
-  margin: 10px;
-}
-.second_line_p {
-  border: 1px solid grey;
-  background-color: bisque;
-  border-radius: 3px;
-  display: flex;
+  background-color: #e4dedc;
+  color: #464646;
   padding: 20px;
   margin: 10px;
 }
