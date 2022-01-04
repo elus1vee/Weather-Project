@@ -6,15 +6,22 @@
 .header {
   border: 1px solid grey;
   border-radius: 3px;
-  background-color: rgb(93, 166, 184);
-  padding: 30px;
+  background-color: #c2b8b2;
+  padding: 5px 20px;
   margin: 20px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 
   position: relative;
   min-width: 500px;
+
+  font-size: 1.3em;
+}
+
+form {
+  margin: 0 auto;
 }
 
 input {
@@ -23,19 +30,25 @@ input {
   margin-left: auto;
   margin-right: auto;
 
-  margin: 0 3px 0 30px;
+  margin: 0 auto;
 
   min-width: 252px;
   max-width: 470px;
   width: 100%;
+
+  padding: 5px 15px;
+  font-size: 0.9em;
 }
 #mainLogo {
-  width: 100px;
-  height: 5%;
+  height: 70px;
   margin-left: auto;
 }
 .time_block {
   margin-left: auto;
+  color: #493d39;
+  border: 1px solid grey;
+  border-radius: 8px 1px 8px 1px;
+  padding: 4px 8px;
 }
 .main {
   border: 1px solid grey;
