@@ -40,7 +40,6 @@ fetch(
     document.body.append(block);
   });
 
-
 setTimeBlock();
 
 function setTimeBlock() {
@@ -49,4 +48,3 @@ function setTimeBlock() {
     document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
   }, 1000);
 }
-
