@@ -1,11 +1,16 @@
-fetch(
-  "http://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=London&days=7&aqi=yes&alerts=yes"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    let block = dayWeatherPreview(data);
-    document.getElementsByClassName("second_line")[0].append(block);
-  });
-
+searchCity(getUrlByCity("Minsk"));
 setTimeBlock();
+
+const form = document.loginForm;
+let city = form.city;
+let url;
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let cityy = city.value;
+  console.log(cityy);
+  url = getUrlByCity(cityy);
+  console.log(url);
+  searchCity(url);
+  city.value = "";
+});

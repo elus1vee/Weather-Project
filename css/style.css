@@ -66,11 +66,18 @@ input {
   margin: 20px;
 }
 
-.first_line,
+.first_line {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  max-height: 199px;
+}
 .second_line {
   border: 1px solid grey;
   display: flex;
   justify-content: center;
+  max-height: 199px;
+  min-height: 199px;
 }
 
 .first_line p,
@@ -84,7 +91,7 @@ input {
 
 .dayWeatherPreview__block {
   max-width: 100px;
-  max-height: 162px;
+  max-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
