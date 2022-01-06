@@ -127,3 +127,10 @@ input {
   font-size: 15px;
   font-weight: 800;
 }
+.main_line {
+  border: 1px solid grey;
+  background-color: rgb(148, 153, 104);
+  border-radius: 3px;
+  padding: 20px;
+  margin: 10px;
+}
