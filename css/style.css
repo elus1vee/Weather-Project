@@ -69,7 +69,8 @@ input {
 .first_line,
 .second_line {
   border: 1px solid grey;
-  background-color: #8a716a;
+  display: flex;
+  justify-content: center;
 }
 
 .first_line p,
@@ -82,16 +83,40 @@ input {
 }
 
 .dayWeatherPreview__block {
-  max-width: 80px;
+  max-width: 100px;
+  max-height: 162px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10px;
   padding: 5px;
-  border: 1px solid black;
+}
+.dayWeatherPreview__block:hover {
+  border: 1px solid rgb(194, 192, 192);
+  border-radius: 3px;
+  margin-top: 10px;
+  box-shadow: 0 0 13px rgb(194, 192, 192);
 }
 
 .dayWeatherPreview__main {
   display: flex;
   justify-content: center;
+  text-align: center;
+}
+
+.dayWeatherPrevie__date {
+  color: red;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.dayWeatherPrevie__temp {
+  padding: 10px;
+  color: royalblue;
+  font-size: 20px;
+}
+
+.dayWeatherPrevie__about {
+  font-size: 15px;
+  font-weight: 800;
 }
