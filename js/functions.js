@@ -55,3 +55,50 @@ function searchCity(url) {
       tempBlock.append(block);
     });
 }
+//================================
+import {Forecast} from "./Forecast.js"; 
+
+function renderTable (allHourData) {
+
+let timeColumns = "";
+let iconColumns = "";
+let tempColumns = "";
+for (let i = 0; i < allHourData.length; i = i + 2 ) {
+  timeColumns = timeColumns.concat(`<th>${allHourData[i].time.split(" ")[1]}</th>`);
+  iconColumns = iconColumns.concat(`<th><img src="${allHourData[i].condition.icon}"></th>`);
+  tempColumns = tempColumns.concat(`<th>${allHourData[i].temp_c}</th>`);
+}
+  return `<table><tbody><tr>${timeColumns}</tr><tr>${iconColumns}</tr><tr>${tempColumns}</tr></tbody></table>`;
+}
+
+function renderForecast(forecastEntity) {
+  const divFirstLine = document.getElementById("firstLine");
+  const divMainLine = document.createElement("div");
+  divMainLine.className = "main_line";
+  divFirstLine.after(divMainLine);
+
+  divMainLine.innerHTML = `<h2> ${forecastEntity.city}  ${forecastEntity.country}  ${forecastEntity.currentDataTime} </h2> 
+                            <img src='${forecastEntity.currentConditionIcon}'></img>
+                            <h3> ${forecastEntity.currentCondition} Cloud:= ${forecastEntity.currentCloud}% </h3>
+                            <h4> t: ${forecastEntity.currentTemp_C}°С </h4>
+                            <h4> Feels like: ${forecastEntity.currentFeelslike_c}°С </h4>
+                            <h4> Wind: ${forecastEntity.currentWind_kph}kph direction: ${forecastEntity.currentWind_dir} gust: ${forecastEntity.currentGust_kph}kph </h4>
+                            <h4> Pressure: ${forecastEntity.currentPressure_mb} mb</h4>
+                            <h4> Humidity: ${forecastEntity.currentHumidity}% </h4>
+                            <h4> Visibility: ${forecastEntity.currentVis_km}km </h4>                            
+                            ${renderTable(forecastEntity.currentTempAllHours)}`;
+  return divMainLine;
+}
+
+function getForecast(url) {
+  return fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      const forecast = new Forecast(data);
+      return forecast;
+    });
+}
+export {renderForecast, getForecast, searchCity, setTimeBlock, getUrlByCity};
