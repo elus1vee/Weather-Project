@@ -43,3 +43,15 @@ function setTimeBlock() {
     document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
   }, 1000);
 }
+
+function searchCity(url) {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      let block = dayWeatherPreview(data);
+      let tempBlock = document.getElementsByClassName("second_line")[0];
+      tempBlock.innerHTML = "";
+      tempBlock.append(block);
+    });
+}
