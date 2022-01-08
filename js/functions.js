@@ -83,7 +83,7 @@ function renderForecast(forecastEntity) {
                             <p id = "main_line_plessure"> Pressure: ${forecastEntity.currentPressure_mb} mb</p>
                             <p id = "main_line_humidity"> Humidity: ${forecastEntity.currentHumidity}% </p>
                             <p id = "main_line_visKm"> Visibility: ${forecastEntity.currentVis_km}km </p>                            
-                            ${forecastEntity.currentTempAllHours}`;
+                            ${renderTable(forecastEntity.currentTempAllHours)}`;
   return divMainLine;
 }
 
