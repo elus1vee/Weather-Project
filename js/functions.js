@@ -10,7 +10,6 @@ function getUrlByCity(city, date = "") {
 }
 
 function dayWeatherPreview(data) {
-  console.log(data);
   let mainDiv = document.createElement("div");
   mainDiv.className = "dayWeatherPreview__main";
   for (let i = 0; i < 3; i++) {
@@ -47,17 +46,11 @@ function historyWeatherPreview(cityyy) {
     now.setTime(now.getTime() - dayMilliseconds);
     timeArr[i] = now.toJSON().split("T")[0];
   }
-  timeArr.forEach((item) => {
-    console.log(item);
-  });
-
   for (let i = 0; i < 7; i++) {
     let url = getUrlByCity(cityyy, timeArr[i]);
-    console.log(url);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         let div = document.createElement("div");
         div.className = "dayWeatherPreview__block";
         let obj = data.forecast.forecastday[0];

@@ -28,8 +28,6 @@ let block2 = document.getElementById("first_line_2");
 block2.addEventListener("click", (event) => {
   if (activeBlock === 1) {
     activeBlocks(2);
-    console.log(block1);
-    console.log(block2);
     let mainBlock = historyWeatherPreview(cityy);
     let tempBlock = document.getElementsByClassName("second_line")[0];
     tempBlock.innerHTML = "";
@@ -40,8 +38,6 @@ block2.addEventListener("click", (event) => {
 block1.addEventListener("click", (event) => {
   if (activeBlock === 2) {
     activeBlocks(1);
-    console.log(block1);
-    console.log(block2);
     searchCity(getUrlByCity(cityy));
   }
   activeBlock = 1;
