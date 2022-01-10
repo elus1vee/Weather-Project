@@ -6,6 +6,7 @@ import {
   getUrlByCity,
   renderForecastAnotherDay,
   historyWeatherPreview,
+  activeBlocks,
 } from "./functions.js";
 
 const form = document.loginForm;
@@ -21,8 +22,34 @@ getForecast(url).then((forecast) => {
 });
 setTimeBlock();
 
+let activeBlock = 1;
+let block1 = document.getElementById("first_line_1");
+let block2 = document.getElementById("first_line_2");
+block2.addEventListener("click", (event) => {
+  if (activeBlock === 1) {
+    activeBlocks(2);
+    console.log(block1);
+    console.log(block2);
+    let mainBlock = historyWeatherPreview(cityy);
+    let tempBlock = document.getElementsByClassName("second_line")[0];
+    tempBlock.innerHTML = "";
+    document.getElementsByClassName("second_line")[0].append(mainBlock);
+  }
+  activeBlock = 2;
+});
+block1.addEventListener("click", (event) => {
+  if (activeBlock === 2) {
+    activeBlocks(1);
+    console.log(block1);
+    console.log(block2);
+    searchCity(getUrlByCity(cityy));
+  }
+  activeBlock = 1;
+});
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  activeBlocks(1);
   cityy = city.value;
   url = getUrlByCity(cityy);
   searchCity(url);
@@ -59,31 +86,4 @@ div.addEventListener("click", (event) => {
       tempDiv.append(mainDiv);
     }
   });
-});
-
-let activeBlock = 1;
-let block1 = document.getElementById("first_line_1");
-let block2 = document.getElementById("first_line_2");
-block2.addEventListener("click", (event) => {
-  if (activeBlock === 1) {
-    block1.className = "first_line_p";
-    block2.className = "first_line_p first_line__active";
-    console.log(block1);
-    console.log(block2);
-    let mainBlock = historyWeatherPreview(cityy);
-    let tempBlock = document.getElementsByClassName("second_line")[0];
-    tempBlock.innerHTML = "";
-    document.getElementsByClassName("second_line")[0].append(mainBlock);
-  }
-  activeBlock = 2;
-});
-block1.addEventListener("click", (event) => {
-  if (activeBlock === 2) {
-    block2.className = "first_line_p";
-    block1.className = "first_line_p first_line__active";
-    console.log(block1);
-    console.log(block2);
-    searchCity(getUrlByCity(cityy));
-  }
-  activeBlock = 1;
 });

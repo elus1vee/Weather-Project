@@ -90,6 +90,19 @@ function setTimeBlock() {
   }, 1000);
 }
 
+function activeBlocks(key) {
+  let block1 = document.getElementById("first_line_1");
+  let block2 = document.getElementById("first_line_2");
+  if (key === 1) {
+    block2.className = "first_line_p";
+    block1.className = "first_line_p first_line__active";
+  }
+  if (key === 2) {
+    block1.className = "first_line_p";
+    block2.className = "first_line_p first_line__active";
+  }
+}
+
 function searchCity(url) {
   fetch(url)
     .then((response) => response.json())
@@ -188,4 +201,5 @@ export {
   getUrlByCity,
   renderForecastAnotherDay,
   historyWeatherPreview,
+  activeBlocks,
 };
