@@ -57,36 +57,33 @@ input {
   margin-right: auto;
   border-radius: 3px;
 }
-.first_line,
-.second_line,
-.first_line p,
-.second_line p {
-  border-radius: 3px;
-  display: flex;
-  margin: 20px;
-}
 
 .first_line {
-  border: 1px solid grey;
   display: flex;
   justify-content: center;
   max-height: 199px;
+  margin: 15px;
 }
 .second_line {
-  border: 1px solid grey;
   display: flex;
   justify-content: center;
   max-height: 199px;
   min-height: 199px;
 }
 
-.first_line p,
-.second_line p {
+.first_line_p {
+  font-size: 18px;
   border: 1px solid grey;
-  background-color: #e4dedc;
+  border-radius: 10px;
+  background-color: #e2e1e1;
   color: #464646;
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
+}
+
+.first_line p:hover {
+  outline: 1px solid rgb(73, 72, 72);
+  box-shadow: 0 0 13px grey;
 }
 
 .dayWeatherPreview__block {
@@ -99,7 +96,7 @@ input {
   padding: 5px;
 }
 .dayWeatherPreview__block:hover {
-  border: 1px solid rgb(194, 192, 192);
+  outline: 1px solid rgb(194, 192, 192);
   border-radius: 3px;
   margin-top: 10px;
   box-shadow: 0 0 13px rgb(194, 192, 192);
@@ -128,13 +125,44 @@ input {
   font-weight: 800;
 }
 .main_line {
-  border: 1px solid grey;
-  background-color: rgb(148, 153, 104);
-  border-radius: 3px;
+  background: url("../img/bgday.jpg") no-repeat;
+
+  border-radius: 20px;
   padding: 20px;
   margin: 10px;
 }
 
 #main_line_city {
-  color: red;
+  color: black;
+  font-size: 20px;
+}
+.first_line__active {
+  background-color: rgb(190, 187, 187);
+}
+
+.main__block {
+  border: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 20px;
+}
+.zero_line {
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.zero_line_2 {
+  margin: 5px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.main_zero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  align-self: center;
 }

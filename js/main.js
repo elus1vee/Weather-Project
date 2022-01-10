@@ -5,9 +5,13 @@ import {
   setTimeBlock,
   getUrlByCity,
   renderForecastAnotherDay,
+  historyWeatherPreview,
 } from "./functions.js";
 
-let url = getUrlByCity("Minsk");
+const form = document.loginForm;
+let city = form.city;
+var cityy = "Minsk";
+let url = getUrlByCity(cityy);
 searchCity(url);
 getForecast(url).then((forecast) => {
   let mainDiv = renderForecast(forecast);
@@ -17,12 +21,9 @@ getForecast(url).then((forecast) => {
 });
 setTimeBlock();
 
-const form = document.loginForm;
-let city = form.city;
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  let cityy = city.value;
+  cityy = city.value;
   url = getUrlByCity(cityy);
   searchCity(url);
   getForecast(url).then((forecast) => {
@@ -58,4 +59,31 @@ div.addEventListener("click", (event) => {
       tempDiv.append(mainDiv);
     }
   });
+});
+
+let activeBlock = 1;
+let block1 = document.getElementById("first_line_1");
+let block2 = document.getElementById("first_line_2");
+block2.addEventListener("click", (event) => {
+  if (activeBlock === 1) {
+    block1.className = "first_line_p";
+    block2.className = "first_line_p first_line__active";
+    console.log(block1);
+    console.log(block2);
+    let mainBlock = historyWeatherPreview(cityy);
+    let tempBlock = document.getElementsByClassName("second_line")[0];
+    tempBlock.innerHTML = "";
+    document.getElementsByClassName("second_line")[0].append(mainBlock);
+  }
+  activeBlock = 2;
+});
+block1.addEventListener("click", (event) => {
+  if (activeBlock === 2) {
+    block2.className = "first_line_p";
+    block1.className = "first_line_p first_line__active";
+    console.log(block1);
+    console.log(block2);
+    searchCity(getUrlByCity(cityy));
+  }
+  activeBlock = 1;
 });
