@@ -1,5 +1,6 @@
 function getUrlByCity(city, date = "") {
-  let url = "http://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=";
+  let url =
+    "http://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=";
   if (date) {
     url = url + city + "&dt=" + date;
   } else {
@@ -38,9 +39,11 @@ function dayWeatherPreview(data) {
 }
 
 function setTimeBlock() {
-  document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
+  document.getElementsByClassName("time_block")[0].innerHTML =
+    new Date().timeNow();
   setInterval(() => {
-    document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
+    document.getElementsByClassName("time_block")[0].innerHTML =
+      new Date().timeNow();
   }, 1000);
 }
 
@@ -48,7 +51,6 @@ function searchCity(url) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       let block = dayWeatherPreview(data);
       let tempBlock = document.getElementsByClassName("second_line")[0];
       tempBlock.innerHTML = "";
@@ -63,8 +65,12 @@ function renderTable(allHourData) {
   let iconColumns = "";
   let tempColumns = "";
   for (let i = 0; i < allHourData.length; i = i + 2) {
-    timeColumns = timeColumns.concat(`<th>${allHourData[i].time.split(" ")[1]}</th>`);
-    iconColumns = iconColumns.concat(`<th><img src="${allHourData[i].condition.icon}"></th>`);
+    timeColumns = timeColumns.concat(
+      `<th>${allHourData[i].time.split(" ")[1]}</th>`
+    );
+    iconColumns = iconColumns.concat(
+      `<th><img src="${allHourData[i].condition.icon}"></th>`
+    );
     tempColumns = tempColumns.concat(`<th>${allHourData[i].temp_c}</th>`);
   }
   return `<table><tbody><tr>${timeColumns}</tr><tr>${iconColumns}</tr><tr>${tempColumns}</tr></tbody></table>`;
@@ -72,18 +78,37 @@ function renderTable(allHourData) {
 
 function renderForecast(forecastEntity) {
   const divMainLine = document.createElement("div");
-  divMainLine.innerText = "";
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<p id="main_line_city"> ${forecastEntity.city}  ${forecastEntity.country}  ${forecastEntity.currentDataTime} </p> 
-                            <img id="main_line_icon"src='${forecastEntity.currentConditionIcon}'></img>
-                            <p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud:= ${forecastEntity.currentCloud}% </p>
-                            <p id = "main_line_temp"> t: ${forecastEntity.currentTemp_C}°С </p>
-                            <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
-                            <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${forecastEntity.currentWind_dir} gust: ${forecastEntity.currentGust_kph}kph </p>
-                            <p id = "main_line_plessure"> Pressure: ${forecastEntity.currentPressure_mb} mb</p>
-                            <p id = "main_line_humidity"> Humidity: ${forecastEntity.currentHumidity}% </p>
-                            <p id = "main_line_visKm"> Visibility: ${forecastEntity.currentVis_km}km </p>                            
-                            ${renderTable(forecastEntity.currentTempAllHours)}`;
+  divMainLine.innerHTML = 
+  `<p id="main_line_city"> ${forecastEntity.city}  ${forecastEntity.country}  ${forecastEntity.currentDataTime} </p> 
+  <img id="main_line_icon"src='${forecastEntity.currentConditionIcon}'></img>
+  <p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud:= ${forecastEntity.currentCloud}% </p>
+  <p id = "main_line_temp"> Temperature: ${forecastEntity.currentTemp_C}°С </p>
+  <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
+  <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${forecastEntity.currentWind_dir} gust: ${forecastEntity.currentGust_kph}kph </p>
+  <p id = "main_line_plessure"> Pressure: ${forecastEntity.currentPressure_mb} mb</p>
+  <p id = "main_line_humidity"> Humidity: ${forecastEntity.currentHumidity}% </p>
+  <p id = "main_line_visKm"> Visibility: ${forecastEntity.currentVis_km}km </p>                            
+  ${renderTable(forecastEntity.currentTempAllHours)}`;
+  return divMainLine;
+}
+
+function renderForecastAnotherDay(forecastEntity, dateValue) {
+  const index = dateValue === "tomorrow" ? 1 : 2;
+  const forecastday = forecastEntity.anotherDateForecast[index];
+  const divMainLine = document.createElement("div");
+  divMainLine.className = "main_line";
+  divMainLine.innerHTML = 
+  `<p id="main_line_city"> ${forecastEntity.city}  ${forecastEntity.country}  ${forecastday.date} </p> 
+  <img id="main_line_icon"src='${forecastday.day.condition.icon}'></img>
+  <p id = "main_line_cloud">${forecastday.day.condition.text}; Avg. temperature: ${forecastday.day.avgtemp_c}°С </p>
+  <p id = "main_line_temp"> Max. temp: ${forecastday.day.maxtemp_c}°С </p>
+  <p id = "main_line_feelsLike"> Min temp: ${forecastday.day.mintemp_c}°С </p>
+  <p id = "main_line_wind"> Sunrise: ${forecastday.astro.sunrise}; sunset: ${forecastday.astro.sunset}; moon phase: ${forecastday.astro.moon_phase}</p>
+  <p id = "main_line_plessure"> Max. wind: ${forecastday.day.maxwind_kph} kph</p>
+  <p id = "main_line_humidity"> Humidity: ${forecastday.day.avghumidity}% </p>
+  <p id = "main_line_visKm">Avg. visibility: ${forecastday.day.avgvis_km}km </p>                            
+  ${renderTable(forecastday.hour)}`;
   return divMainLine;
 }
 
@@ -93,9 +118,16 @@ function getForecast(url) {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       const forecast = new Forecast(data);
       return forecast;
     });
 }
-export { renderForecast, getForecast, searchCity, setTimeBlock, getUrlByCity };
+
+export {
+  renderForecast,
+  getForecast,
+  searchCity,
+  setTimeBlock,
+  getUrlByCity,
+  renderForecastAnotherDay,
+};

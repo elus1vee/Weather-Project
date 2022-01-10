@@ -18,5 +18,6 @@ export class Forecast {
     this.currentGust_kph = data.current.gust_kph;
 
     this.currentTempAllHours = data.forecast.forecastday[0].hour;
+    this.anotherDateForecast = data.forecast.forecastday;
   }
 }
