@@ -11,8 +11,8 @@
 
 .header {
   border: 1px solid grey;
-  border-radius: 3px;
-  background-color: #c2b8b2;
+  border-radius: 20px;
+  background-color: #396f99;
   padding: 5px 20px;
   margin: 20px;
 
@@ -46,15 +46,15 @@ input {
   font-size: 0.9em;
 }
 #mainLogo {
-  height: 70px;
+  height: 80px;
   margin-left: auto;
 }
 .time_block {
   margin-left: auto;
-  color: #493d39;
-  border: 1px solid grey;
+  color: #fdfcfb;
+  border: 1px solid rgb(255, 252, 252);
   border-radius: 8px 1px 8px 1px;
-  padding: 4px 8px;
+  padding: 4px 80px;
 }
 .main {
   border: 1px solid grey;
@@ -79,17 +79,17 @@ input {
 
 .first_line_p {
   font-size: 18px;
-  border: 1px solid grey;
+  border: 1px solid #4b507691;
   border-radius: 10px;
-  background-color: #e2e1e1;
+  background-color: rgb(191 231 235 / 17%);
   color: #464646;
   padding: 10px;
   margin: 10px;
 }
 
 .first_line p:hover {
-  outline: 1px solid rgb(73, 72, 72);
-  box-shadow: 0 0 13px grey;
+  outline: 1px solid rgb(87 157 203 / 58%);
+  box-shadow: 0 0 13px #80808042;
 }
 
 .dayWeatherPreview__block {
@@ -206,8 +206,8 @@ input {
   margin: 20px;
 }
 #main_line_icon {
-  width: 150px;
-  margin-left: -30px;
+  width: 120px;
+  margin-left: -0px;
 }
 
 #main_line_temp {
@@ -221,7 +221,7 @@ input {
 }
 
 .first_line__active {
-  background-color: rgb(190, 187, 187);
+  background-color: rgb(57 111 153 / 45%);
 }
 
 .main__block {
@@ -249,4 +249,7 @@ input {
   align-items: center;
   width: 380px;
   align-self: center;
+}
+#title {
+  color: white;
 }
