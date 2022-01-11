@@ -159,9 +159,9 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   const forecastday = forecastEntity.anotherDateForecast[index];
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
-    forecastEntity.country 
-  } </p> 
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${
+    forecastEntity.city
+  }  ${forecastEntity.country} </p> 
   <p id="main_line_time"> ${forecastday.date} </p>
   <div style="margin-left: 25px;display:flex;align-items:center;">
   <p id = "main_line_temp">  ${forecastday.day.maxtemp_c}°С </p>
@@ -177,9 +177,7 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   }; moon phase: ${forecastday.astro.moon_phase}</p>
   <p id = "main_line_plessure"> Max. wind: ${forecastday.day.maxwind_kph} kph</p>
   <p id = "main_line_humidity"> Humidity: ${forecastday.day.avghumidity}% </p>
-  <p id = "main_line_visKm">Avg. visibility: ${
-    forecastday.day.avgvis_km
-  }km </p> </div>             
+  <p id = "main_line_visKm">Avg. visibility: ${forecastday.day.avgvis_km}km </p> </div>             
   ${renderTable(forecastday.hour)}`;
   return divMainLine;
 }
