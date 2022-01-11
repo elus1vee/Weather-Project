@@ -51,6 +51,7 @@ function historyWeatherPreview(cityyy) {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         let div = document.createElement("div");
         div.className = "dayWeatherPreview__block";
         let obj = data.forecast.forecastday[0];

@@ -25,6 +25,20 @@ setTimeBlock();
 let activeBlock = 1;
 let block1 = document.getElementById("first_line_1");
 let block2 = document.getElementById("first_line_2");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  cityy = city.value;
+  url = getUrlByCity(cityy);
+  searchCity(url);
+  getForecast(url).then((forecast) => {
+    let mainDiv = renderForecast(forecast);
+    let tempDiv = document.getElementsByClassName("third_line")[0];
+    tempDiv.innerHTML = "";
+    tempDiv.append(mainDiv);
+  });
+  city.value = "";
+  activeBlocks(1);
+});
 block2.addEventListener("click", (event) => {
   if (activeBlock === 1) {
     activeBlocks(2);
@@ -41,21 +55,6 @@ block1.addEventListener("click", (event) => {
     searchCity(getUrlByCity(cityy));
   }
   activeBlock = 1;
-});
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  activeBlocks(1);
-  cityy = city.value;
-  url = getUrlByCity(cityy);
-  searchCity(url);
-  getForecast(url).then((forecast) => {
-    let mainDiv = renderForecast(forecast);
-    let tempDiv = document.getElementsByClassName("third_line")[0];
-    tempDiv.innerHTML = "";
-    tempDiv.append(mainDiv);
-  });
-  city.value = "";
 });
 
 let d = document.getElementsByClassName("main");
