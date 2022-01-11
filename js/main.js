@@ -37,6 +37,8 @@ form.addEventListener("submit", (event) => {
     tempDiv.append(mainDiv);
   });
   city.value = "";
+  activeBlock = 1;
+  activeBlocks(1);
 });
 block2.addEventListener("click", (event) => {
   if (activeBlock === 1) {
