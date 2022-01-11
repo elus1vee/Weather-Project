@@ -67,16 +67,19 @@ div.addEventListener("click", (event) => {
     let mainDiv;
     let tempDiv = document.getElementsByClassName("third_line")[0];
     if (block[0].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecast(forecast);
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
     }
     if (block[1].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecastAnotherDay(forecast, "tomorrow");
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
     }
     if (block[2].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecastAnotherDay(forecast, "dayAfterTomorrow");
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
