@@ -47,7 +47,7 @@ input {
 }
 #mainLogo {
   height: 80px;
-  margin-left: auto;
+  width: 80px;
 }
 .time_block {
   margin-left: auto;
@@ -55,6 +55,8 @@ input {
   border: 1px solid rgb(255, 252, 252);
   border-radius: 8px 1px 8px 1px;
   padding: 4px 80px;
+  width: 250px;
+  text-align: center;
 }
 .main {
   border: 1px solid grey;
@@ -252,4 +254,12 @@ input {
 }
 #title {
   color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
 }
