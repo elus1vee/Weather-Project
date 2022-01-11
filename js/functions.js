@@ -115,28 +115,31 @@ function searchCity(url) {
 import { Forecast } from "./Forecast.js";
 
 function renderTable(allHourData) {
-  let timeColumns = "";
-  let iconColumns = "";
-  let tempColumns = "";
+  let hourBlocks = "";
   for (let i = 0; i < allHourData.length; i = i + 2) {
-    timeColumns = timeColumns.concat(`<th>${allHourData[i].time.split(" ")[1]}</th>`);
-    iconColumns = iconColumns.concat(`<th><img src="${allHourData[i].condition.icon}"></th>`);
-    tempColumns = tempColumns.concat(`<th>${allHourData[i].temp_c}</th>`);
+    hourBlocks += "<div>";
+    hourBlocks += `<div>${allHourData[i].time.split(" ")[1]}</div>`;
+    hourBlocks += `<div><img src="${allHourData[i].condition.icon}"></div>`;
+    hourBlocks += `<div>${allHourData[i].temp_c}</div>`;
+    hourBlocks += "</div>";
   }
-  return `<table><tbody><tr>${timeColumns}</tr><tr>${iconColumns}</tr><tr>${tempColumns}</tr></tbody></table>`;
+  return `<hr/><div class="weather2hours">${hourBlocks}</div>`;
 }
 
 function renderForecast(forecastEntity) {
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<p id="main_line_city"> ${forecastEntity.city}  ${
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
     forecastEntity.country
-  }  ${forecastEntity.currentDataTime} </p> 
+  }</p>
+  <p id="main_line_time">${forecastEntity.currentDataTime}</p> 
+  <div style="margin-left: 25px;display:flex;align-items:center;">
+  <p id = "main_line_temp">  ${forecastEntity.currentTemp_C}°С </p>
   <img id="main_line_icon"src='${forecastEntity.currentConditionIcon}'></img>
-  <p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud:= ${
+  </div></div>
+  <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud: ${
     forecastEntity.currentCloud
   }% </p>
-  <p id = "main_line_temp"> Temperature: ${forecastEntity.currentTemp_C}°С </p>
   <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
   <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${
     forecastEntity.currentWind_dir
@@ -145,8 +148,8 @@ function renderForecast(forecastEntity) {
   <p id = "main_line_humidity"> Humidity: ${forecastEntity.currentHumidity}% </p>
   <p id = "main_line_visKm"> Visibility: ${
     forecastEntity.currentVis_km
-  }km </p>                            
-  ${renderTable(forecastEntity.currentTempAllHours)}`;
+  }km </p></div>                            
+  ${renderTable(forecastEntity.currentTempAllHours)}<div>`;
   return divMainLine;
 }
 
