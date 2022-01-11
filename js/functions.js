@@ -48,6 +48,7 @@ function historyWeatherPreview(cityyy) {
   }
   for (let i = 0; i < 7; i++) {
     let url = getUrlByCity(cityyy, timeArr[i]);
+    console.log(timeArr[i]);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -129,17 +130,17 @@ function renderTable(allHourData) {
 function renderForecast(forecastEntity) {
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
-    forecastEntity.country
-  }</p>
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${
+    forecastEntity.city
+  }  ${forecastEntity.country}</p>
   <p id="main_line_time">${forecastEntity.currentDataTime}</p> 
   <div style="margin-left: 25px;display:flex;align-items:center;">
   <p id = "main_line_temp">  ${forecastEntity.currentTemp_C}°С </p>
   <img id="main_line_icon"src='${forecastEntity.currentConditionIcon}'></img>
   </div></div>
-  <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud: ${
-    forecastEntity.currentCloud
-  }% </p>
+  <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${
+    forecastEntity.currentCondition
+  } Cloud: ${forecastEntity.currentCloud}% </p>
   <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
   <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${
     forecastEntity.currentWind_dir
