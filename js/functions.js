@@ -157,14 +157,18 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   const forecastday = forecastEntity.anotherDateForecast[index];
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<p id="main_line_city"> ${forecastEntity.city}  ${
-    forecastEntity.country
-  }  ${forecastday.date} </p> 
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
+    forecastEntity.country 
+  } </p> 
+  <p id="main_line_time"> ${forecastday.date} </p>
+  <div style="margin-left: 25px;display:flex;align-items:center;">
+  <p id = "main_line_temp">  ${forecastday.day.maxtemp_c}°С </p>
   <img id="main_line_icon"src='${forecastday.day.condition.icon}'></img>
+  </div></div>
+  <div><div class="main_line_weather_info">
   <p id = "main_line_cloud">${forecastday.day.condition.text}; Avg. temperature: ${
     forecastday.day.avgtemp_c
   }°С </p>
-  <p id = "main_line_temp"> Max. temp: ${forecastday.day.maxtemp_c}°С </p>
   <p id = "main_line_feelsLike"> Min temp: ${forecastday.day.mintemp_c}°С </p>
   <p id = "main_line_wind"> Sunrise: ${forecastday.astro.sunrise}; sunset: ${
     forecastday.astro.sunset
@@ -173,7 +177,7 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   <p id = "main_line_humidity"> Humidity: ${forecastday.day.avghumidity}% </p>
   <p id = "main_line_visKm">Avg. visibility: ${
     forecastday.day.avgvis_km
-  }km </p>                            
+  }km </p> </div>             
   ${renderTable(forecastday.hour)}`;
   return divMainLine;
 }

@@ -143,7 +143,7 @@ input {
 .dayWeatherPrevie__date {
   color: red;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .dayWeatherPrevie__temp {
@@ -206,8 +206,8 @@ input {
   margin: 20px;
 }
 #main_line_icon {
-  width: 150px;
-  margin-left: -30px;
+  width: 120px;
+  margin-left: -0px;
 }
 
 #main_line_temp {
