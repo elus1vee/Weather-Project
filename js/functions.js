@@ -9,29 +9,34 @@ function getUrlByCity(city, date = "") {
   return url;
 }
 
+function dayblockPreview(obj) {
+  let div = document.createElement("div");
+  div.className = "dayWeatherPreview__block";
+  let datee = document.createElement("div");
+  datee.className = "dayWeatherPrevie__date";
+  datee.innerText = obj.date;
+  let img = document.createElement("img");
+  let icon = obj.day.condition.icon;
+  img.src = icon;
+  let temp = document.createElement("div");
+  temp.className = "dayWeatherPrevie__temp";
+  temp.innerText = `${obj.day.avgtemp_c}°`;
+  let about = document.createElement("div");
+  about.className = "dayWeatherPrevie__about";
+  about.innerText = obj.day.condition.text;
+  div.append(datee);
+  div.append(img);
+  div.append(temp);
+  div.append(about);
+  return div;
+}
+
 function dayWeatherPreview(data) {
   let mainDiv = document.createElement("div");
   mainDiv.className = "dayWeatherPreview__main";
   for (let i = 0; i < 3; i++) {
-    let div = document.createElement("div");
-    div.className = "dayWeatherPreview__block";
     let obj = data.forecast.forecastday[i];
-    let datee = document.createElement("div");
-    datee.className = "dayWeatherPrevie__date";
-    datee.innerText = obj.date;
-    let img = document.createElement("img");
-    let icon = obj.day.condition.icon;
-    img.src = icon;
-    let temp = document.createElement("div");
-    temp.className = "dayWeatherPrevie__temp";
-    temp.innerText = `${obj.day.avgtemp_c}°`;
-    let about = document.createElement("div");
-    about.className = "dayWeatherPrevie__about";
-    about.innerText = obj.day.condition.text;
-    div.append(datee);
-    div.append(img);
-    div.append(temp);
-    div.append(about);
+    let div = dayblockPreview(obj);
     mainDiv.append(div);
   }
   return mainDiv;
@@ -39,42 +44,26 @@ function dayWeatherPreview(data) {
 function historyWeatherPreview(cityyy) {
   let now = new Date();
   const dayMilliseconds = 24 * 60 * 60 * 1000;
-  let mainDiv = document.createElement("div");
-  mainDiv.className = "dayWeatherPreview__main";
   let timeArr = [];
+  let urlArr = [];
   for (let i = 0; i < 7; i++) {
     now.setTime(now.getTime() - dayMilliseconds);
     timeArr[i] = now.toJSON().split("T")[0];
+    urlArr[i] = getUrlByCity(cityyy, timeArr[i]);
   }
-  for (let i = 0; i < 7; i++) {
-    let url = getUrlByCity(cityyy, timeArr[i]);
-    console.log(timeArr[i]);
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        let div = document.createElement("div");
-        div.className = "dayWeatherPreview__block";
-        let obj = data.forecast.forecastday[0];
-        let datee = document.createElement("div");
-        datee.className = "dayWeatherPrevie__date";
-        datee.innerText = obj.date;
-        let img = document.createElement("img");
-        let icon = obj.day.condition.icon;
-        img.src = icon;
-        let temp = document.createElement("div");
-        temp.className = "dayWeatherPrevie__temp";
-        temp.innerText = `${obj.day.avgtemp_c}°`;
-        let about = document.createElement("div");
-        about.className = "dayWeatherPrevie__about";
-        about.innerText = obj.day.condition.text;
-        div.append(datee);
-        div.append(img);
-        div.append(temp);
-        div.append(about);
-        mainDiv.append(div);
-      });
+  let fetchArr = [];
+  for (let i = 0; i < urlArr.length; i++) {
+    fetchArr[i] = fetch(urlArr[i]).then((response) => response.json());
   }
+  let mainDiv = document.createElement("div");
+  mainDiv.className = "dayWeatherPreview__main";
+  Promise.all(fetchArr).then((data) => {
+    for (let i = 0; i < data.length; i++) {
+      let obj = data[i].forecast.forecastday[0];
+      let div = dayblockPreview(obj);
+      mainDiv.append(div);
+    }
+  });
   return mainDiv;
 }
 
