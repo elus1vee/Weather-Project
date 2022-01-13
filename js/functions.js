@@ -1,3 +1,4 @@
+import { EnhancedDate } from "./EnhancedDate.js";
 function getUrlByCity(city, date = "") {
   let url = "http://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=";
   if (date) {
@@ -68,9 +69,11 @@ function historyWeatherPreview(cityyy) {
 }
 
 function setTimeBlock() {
-  document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
+  const date = new EnhancedDate();
+  document.getElementsByClassName("time_block")[0].innerHTML = date.timeNow();
   setInterval(() => {
-    document.getElementsByClassName("time_block")[0].innerHTML = new Date().timeNow();
+    date.setSeconds(date.getSeconds()+1);
+    document.getElementsByClassName("time_block")[0].innerHTML = date.timeNow();
   }, 1000);
 }
 
@@ -103,6 +106,7 @@ function searchCity(url) {
 }
 //================================
 import { Forecast } from "./Forecast.js";
+
 
 function renderTable(allHourData) {
   let hourBlocks = "";

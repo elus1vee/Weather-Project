@@ -47,7 +47,9 @@ input {
 }
 #mainLogo {
   height: 80px;
+
   width: 80px;
+
 }
 .time_block {
   margin-left: auto;
@@ -250,16 +252,16 @@ input {
   width: 380px;
   align-self: center;
 }
-#title {
+.title {
   color: white;
-  text-align: center;
-  margin-bottom: 10px;
-}
 
-.header__logo {
+  font-size: 30px;
+}
+.titleContainer {
   display: flex;
-  flex-direction: column;
-  width: 80px;
+  justify-content: flex-start;
+  align-items: center;
+
 }
 
 .third_line {
