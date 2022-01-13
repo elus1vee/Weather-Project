@@ -25,6 +25,21 @@ setTimeBlock();
 let activeBlock = 1;
 let block1 = document.getElementById("first_line_1");
 let block2 = document.getElementById("first_line_2");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  cityy = city.value;
+  url = getUrlByCity(cityy);
+  searchCity(url);
+  getForecast(url).then((forecast) => {
+    let mainDiv = renderForecast(forecast);
+    let tempDiv = document.getElementsByClassName("third_line")[0];
+    tempDiv.innerHTML = "";
+    tempDiv.append(mainDiv);
+  });
+  city.value = "";
+  activeBlock = 1;
+  activeBlocks(1);
+});
 block2.addEventListener("click", (event) => {
   if (activeBlock === 1) {
     activeBlocks(2);
@@ -43,21 +58,6 @@ block1.addEventListener("click", (event) => {
   activeBlock = 1;
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  activeBlocks(1);
-  cityy = city.value;
-  url = getUrlByCity(cityy);
-  searchCity(url);
-  getForecast(url).then((forecast) => {
-    let mainDiv = renderForecast(forecast);
-    let tempDiv = document.getElementsByClassName("third_line")[0];
-    tempDiv.innerHTML = "";
-    tempDiv.append(mainDiv);
-  });
-  city.value = "";
-});
-
 let d = document.getElementsByClassName("main");
 let div = d[0];
 div.addEventListener("click", (event) => {
@@ -67,16 +67,19 @@ div.addEventListener("click", (event) => {
     let mainDiv;
     let tempDiv = document.getElementsByClassName("third_line")[0];
     if (block[0].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecast(forecast);
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
     }
     if (block[1].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecastAnotherDay(forecast, "tomorrow");
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
     }
     if (block[2].contains(target)) {
+      scroll(0, 500);
       mainDiv = renderForecastAnotherDay(forecast, "dayAfterTomorrow");
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);

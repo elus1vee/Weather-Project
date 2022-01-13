@@ -10,29 +10,34 @@ function getUrlByCity(city, date = "") {
   return url;
 }
 
+function dayblockPreview(obj) {
+  let div = document.createElement("div");
+  div.className = "dayWeatherPreview__block";
+  let datee = document.createElement("div");
+  datee.className = "dayWeatherPrevie__date";
+  datee.innerText = obj.date;
+  let img = document.createElement("img");
+  let icon = obj.day.condition.icon;
+  img.src = icon;
+  let temp = document.createElement("div");
+  temp.className = "dayWeatherPrevie__temp";
+  temp.innerText = `${obj.day.avgtemp_c}°`;
+  let about = document.createElement("div");
+  about.className = "dayWeatherPrevie__about";
+  about.innerText = obj.day.condition.text;
+  div.append(datee);
+  div.append(img);
+  div.append(temp);
+  div.append(about);
+  return div;
+}
+
 function dayWeatherPreview(data) {
   let mainDiv = document.createElement("div");
   mainDiv.className = "dayWeatherPreview__main";
   for (let i = 0; i < 3; i++) {
-    let div = document.createElement("div");
-    div.className = "dayWeatherPreview__block";
     let obj = data.forecast.forecastday[i];
-    let datee = document.createElement("div");
-    datee.className = "dayWeatherPrevie__date";
-    datee.innerText = obj.date;
-    let img = document.createElement("img");
-    let icon = obj.day.condition.icon;
-    img.src = icon;
-    let temp = document.createElement("div");
-    temp.className = "dayWeatherPrevie__temp";
-    temp.innerText = `${obj.day.avgtemp_c}°`;
-    let about = document.createElement("div");
-    about.className = "dayWeatherPrevie__about";
-    about.innerText = obj.day.condition.text;
-    div.append(datee);
-    div.append(img);
-    div.append(temp);
-    div.append(about);
+    let div = dayblockPreview(obj);
     mainDiv.append(div);
   }
   return mainDiv;
@@ -40,40 +45,26 @@ function dayWeatherPreview(data) {
 function historyWeatherPreview(cityyy) {
   let now = new Date();
   const dayMilliseconds = 24 * 60 * 60 * 1000;
-  let mainDiv = document.createElement("div");
-  mainDiv.className = "dayWeatherPreview__main";
   let timeArr = [];
+  let urlArr = [];
   for (let i = 0; i < 7; i++) {
     now.setTime(now.getTime() - dayMilliseconds);
     timeArr[i] = now.toJSON().split("T")[0];
+    urlArr[i] = getUrlByCity(cityyy, timeArr[i]);
   }
-  for (let i = 0; i < 7; i++) {
-    let url = getUrlByCity(cityyy, timeArr[i]);
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        let div = document.createElement("div");
-        div.className = "dayWeatherPreview__block";
-        let obj = data.forecast.forecastday[0];
-        let datee = document.createElement("div");
-        datee.className = "dayWeatherPrevie__date";
-        datee.innerText = obj.date;
-        let img = document.createElement("img");
-        let icon = obj.day.condition.icon;
-        img.src = icon;
-        let temp = document.createElement("div");
-        temp.className = "dayWeatherPrevie__temp";
-        temp.innerText = `${obj.day.avgtemp_c}°`;
-        let about = document.createElement("div");
-        about.className = "dayWeatherPrevie__about";
-        about.innerText = obj.day.condition.text;
-        div.append(datee);
-        div.append(img);
-        div.append(temp);
-        div.append(about);
-        mainDiv.append(div);
-      });
+  let fetchArr = [];
+  for (let i = 0; i < urlArr.length; i++) {
+    fetchArr[i] = fetch(urlArr[i]).then((response) => response.json());
   }
+  let mainDiv = document.createElement("div");
+  mainDiv.className = "dayWeatherPreview__main";
+  Promise.all(fetchArr).then((data) => {
+    for (let i = 0; i < data.length; i++) {
+      let obj = data[i].forecast.forecastday[0];
+      let div = dayblockPreview(obj);
+      mainDiv.append(div);
+    }
+  });
   return mainDiv;
 }
 
@@ -132,17 +123,17 @@ function renderTable(allHourData) {
 function renderForecast(forecastEntity) {
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
-    forecastEntity.country
-  }</p>
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${
+    forecastEntity.city
+  }  ${forecastEntity.country}</p>
   <p id="main_line_time">${forecastEntity.currentDataTime}</p> 
   <div style="margin-left: 25px;display:flex;align-items:center;">
   <p id = "main_line_temp">  ${forecastEntity.currentTemp_C}°С </p>
   <img id="main_line_icon"src='${forecastEntity.currentConditionIcon}'></img>
   </div></div>
-  <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${forecastEntity.currentCondition} Cloud: ${
-    forecastEntity.currentCloud
-  }% </p>
+  <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${
+    forecastEntity.currentCondition
+  } Cloud: ${forecastEntity.currentCloud}% </p>
   <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
   <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${
     forecastEntity.currentWind_dir
@@ -161,9 +152,9 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   const forecastday = forecastEntity.anotherDateForecast[index];
   const divMainLine = document.createElement("div");
   divMainLine.className = "main_line";
-  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${forecastEntity.city}  ${
-    forecastEntity.country 
-  } </p> 
+  divMainLine.innerHTML = `<div class="main_line_left"><p id="main_line_city"> ${
+    forecastEntity.city
+  }  ${forecastEntity.country} </p> 
   <p id="main_line_time"> ${forecastday.date} </p>
   <div style="margin-left: 25px;display:flex;align-items:center;">
   <p id = "main_line_temp">  ${forecastday.day.maxtemp_c}°С </p>
@@ -179,9 +170,7 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   }; moon phase: ${forecastday.astro.moon_phase}</p>
   <p id = "main_line_plessure"> Max. wind: ${forecastday.day.maxwind_kph} kph</p>
   <p id = "main_line_humidity"> Humidity: ${forecastday.day.avghumidity}% </p>
-  <p id = "main_line_visKm">Avg. visibility: ${
-    forecastday.day.avgvis_km
-  }km </p> </div>             
+  <p id = "main_line_visKm">Avg. visibility: ${forecastday.day.avgvis_km}km </p> </div>             
   ${renderTable(forecastday.hour)}`;
   return divMainLine;
 }

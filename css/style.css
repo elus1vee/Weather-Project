@@ -47,6 +47,9 @@ input {
 }
 #mainLogo {
   height: 80px;
+
+  width: 80px;
+
 }
 .time_block {
   margin-left: auto;
@@ -54,9 +57,10 @@ input {
   border: 1px solid rgb(255, 252, 252);
   border-radius: 8px 1px 8px 1px;
   padding: 4px 80px;
+  width: 250px;
+  text-align: center;
 }
 .main {
-  border: 1px solid grey;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -161,7 +165,6 @@ input {
   border-radius: 20px;
   padding: 20px;
   margin: 10px;
-
   color: #ffffff;
 }
 
@@ -251,10 +254,16 @@ input {
 }
 .title {
   color: white;
+
   font-size: 30px;
 }
 .titleContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+}
+
+.third_line {
+  padding-bottom: 10px;
 }
