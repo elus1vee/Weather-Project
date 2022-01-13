@@ -47,7 +47,6 @@ input {
 }
 #mainLogo {
   height: 80px;
-  margin-left: auto;
 }
 .time_block {
   margin-left: auto;
@@ -250,6 +249,12 @@ input {
   width: 380px;
   align-self: center;
 }
-#title {
+.title {
   color: white;
+  font-size: 30px;
+}
+.titleContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
