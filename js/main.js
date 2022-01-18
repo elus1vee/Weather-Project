@@ -7,6 +7,8 @@ import {
   renderForecastAnotherDay,
   historyWeatherPreview,
   activeBlocks,
+  renderHistoryDay,
+  getHistoryForecast,
 } from "./functions.js";
 
 const form = document.loginForm;
@@ -63,26 +65,74 @@ let div = d[0];
 div.addEventListener("click", (event) => {
   let block = document.getElementsByClassName("dayWeatherPreview__block");
   let target = event.target;
-  getForecast(url).then((forecast) => {
-    let mainDiv;
-    let tempDiv = document.getElementsByClassName("third_line")[0];
-    if (block[0].contains(target)) {
+  if (activeBlock === 1) {
+    getForecast(url).then((forecast) => {
+      let mainDiv;
+      let tempDiv = document.getElementsByClassName("third_line")[0];
+      if (block[0].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderForecast(forecast);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[1].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderForecastAnotherDay(forecast, "tomorrow");
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[2].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderForecastAnotherDay(forecast, "dayAfterTomorrow");
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+    });
+  }
+  if (activeBlock === 2) {
+    getHistoryForecast(cityy).then((arrayHistoryData) => {
+      let mainDiv;
+      let tempDiv = document.getElementsByClassName("third_line")[0];
       scroll(0, 500);
-      mainDiv = renderForecast(forecast);
+      mainDiv = renderHistoryDay(arrayHistoryData[0]);
       tempDiv.innerHTML = "";
       tempDiv.append(mainDiv);
-    }
-    if (block[1].contains(target)) {
-      scroll(0, 500);
-      mainDiv = renderForecastAnotherDay(forecast, "tomorrow");
-      tempDiv.innerHTML = "";
-      tempDiv.append(mainDiv);
-    }
-    if (block[2].contains(target)) {
-      scroll(0, 500);
-      mainDiv = renderForecastAnotherDay(forecast, "dayAfterTomorrow");
-      tempDiv.innerHTML = "";
-      tempDiv.append(mainDiv);
-    }
-  });
+      if (block[1].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[1]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[2].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[2]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[3].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[3]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[4].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[4]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[5].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[5]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+      if (block[6].contains(target)) {
+        scroll(0, 500);
+        mainDiv = renderHistoryDay(arrayHistoryData[6]);
+        tempDiv.innerHTML = "";
+        tempDiv.append(mainDiv);
+      }
+    });
+  }
 });
