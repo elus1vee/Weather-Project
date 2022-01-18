@@ -49,7 +49,6 @@ input {
   height: 80px;
 
   width: 80px;
-
 }
 .time_block {
   margin-left: auto;
@@ -261,7 +260,27 @@ input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
 
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchInputContainer button {
+  display: block;
+}
+
+.searchInputContainer button {
+  position: absolute;
+  height: 1em;
+  right: 3px;
+  background-color: transparent;
+}
+
+.searchInputContainer img {
+  height: 100%;
 }
 
 .third_line {
