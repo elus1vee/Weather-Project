@@ -3,11 +3,9 @@ import { Forecast } from "./Forecast.js";
 import { History } from "./History.js";
 
 function getUrlByCity(city, date = "") {
-  let url =
-    "http://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=";
+  let url = "https://api.weatherapi.com/v1/forecast.json?key=b42ec53b7614492ea26173900212112&q=";
   if (date) {
-    url =
-      "http://api.weatherapi.com/v1/history.json?key=b42ec53b7614492ea26173900212112&q=";
+    url = "https://api.weatherapi.com/v1/history.json?key=b42ec53b7614492ea26173900212112&q=";
     url = url + city + "&dt=" + date;
   } else {
     url = url + city + "&days=7&aqi=yes&alerts=yes";
@@ -149,20 +147,12 @@ function renderForecast(forecastEntity) {
   <div><div class="main_line_weather_info"><p id = "main_line_cloud"> ${
     forecastEntity.currentCondition
   } Cloud: ${forecastEntity.currentCloud}% </p>
-  <p id = "main_line_feelsLike"> Feels like: ${
-    forecastEntity.currentFeelslike_c
-  }°С </p>
-  <p id = "main_line_wind"> Wind: ${
-    forecastEntity.currentWind_kph
-  }kph direction: ${forecastEntity.currentWind_dir} gust: ${
-    forecastEntity.currentGust_kph
-  }kph </p>
-  <p id = "main_line_plessure"> Pressure: ${
-    forecastEntity.currentPressure_mb
-  } mb</p>
-  <p id = "main_line_humidity"> Humidity: ${
-    forecastEntity.currentHumidity
-  }% </p>
+  <p id = "main_line_feelsLike"> Feels like: ${forecastEntity.currentFeelslike_c}°С </p>
+  <p id = "main_line_wind"> Wind: ${forecastEntity.currentWind_kph}kph direction: ${
+    forecastEntity.currentWind_dir
+  } gust: ${forecastEntity.currentGust_kph}kph </p>
+  <p id = "main_line_plessure"> Pressure: ${forecastEntity.currentPressure_mb} mb</p>
+  <p id = "main_line_humidity"> Humidity: ${forecastEntity.currentHumidity}% </p>
   <p id = "main_line_visKm"> Visibility: ${
     forecastEntity.currentVis_km
   }km </p></div>                            
@@ -184,20 +174,16 @@ function renderForecastAnotherDay(forecastEntity, dateValue) {
   <img id="main_line_icon"src='${forecastday.day.condition.icon}'></img>
   </div></div>
   <div><div class="main_line_weather_info">
-  <p id = "main_line_cloud">${
-    forecastday.day.condition.text
-  }; Avg. temperature: ${forecastday.day.avgtemp_c}°С </p>
+  <p id = "main_line_cloud">${forecastday.day.condition.text}; Avg. temperature: ${
+    forecastday.day.avgtemp_c
+  }°С </p>
   <p id = "main_line_feelsLike"> Min temp: ${forecastday.day.mintemp_c}°С </p>
   <p id = "main_line_wind"> Sunrise: ${forecastday.astro.sunrise}; sunset: ${
     forecastday.astro.sunset
   }; moon phase: ${forecastday.astro.moon_phase}</p>
-  <p id = "main_line_plessure"> Max. wind: ${
-    forecastday.day.maxwind_kph
-  } kph</p>
+  <p id = "main_line_plessure"> Max. wind: ${forecastday.day.maxwind_kph} kph</p>
   <p id = "main_line_humidity"> Humidity: ${forecastday.day.avghumidity}% </p>
-  <p id = "main_line_visKm">Avg. visibility: ${
-    forecastday.day.avgvis_km
-  }km </p> </div>             
+  <p id = "main_line_visKm">Avg. visibility: ${forecastday.day.avgvis_km}km </p> </div>             
   ${renderTable(forecastday.hour)}`;
   return divMainLine;
 }
@@ -215,18 +201,16 @@ function renderHistoryDay(historyEntity) {
   <img id="main_line_icon"src='${historyday.day.condition.icon}'></img>
   </div></div>
   <div><div class="main_line_weather_info">
-  <p id = "main_line_cloud">${
-    historyday.day.condition.text
-  }; Avg. temperature: ${historyday.day.avgtemp_c}°С </p>
+  <p id = "main_line_cloud">${historyday.day.condition.text}; Avg. temperature: ${
+    historyday.day.avgtemp_c
+  }°С </p>
   <p id = "main_line_feelsLike"> Min temp: ${historyday.day.mintemp_c}°С </p>
   <p id = "main_line_wind"> Sunrise: ${historyday.astro.sunrise}; sunset: ${
     historyday.astro.sunset
   }; moon phase: ${historyday.astro.moon_phase}</p>
   <p id = "main_line_plessure"> Max. wind: ${historyday.day.maxwind_kph} kph</p>
   <p id = "main_line_humidity"> Humidity: ${historyday.day.avghumidity}% </p>
-  <p id = "main_line_visKm">Avg. visibility: ${
-    historyday.day.avgvis_km
-  }km </p> </div>             
+  <p id = "main_line_visKm">Avg. visibility: ${historyday.day.avgvis_km}km </p> </div>             
   ${renderTable(historyday.hour)}`;
   return divMainLine;
 }
